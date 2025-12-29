@@ -102,7 +102,11 @@ class StatusPage extends BeanModel {
         const $ = cheerio.load(indexHTML);
 
         const rawDescription = statusPage.description ?? "";
-        const descriptionText = rawDescription.replace(/<[^>]*>/g, "");
+        // Use cheerio to safely extract text content, removing script/style tags first
+        // This prevents XSS while handling all HTML including malformed tags
+        const $desc = cheerio.load(rawDescription);
+        $desc("script, style").remove();
+        const descriptionText = $desc.text();
         const description155 = descriptionText.trim().substring(0, 155);
 
         $("title").text(statusPage.title);
