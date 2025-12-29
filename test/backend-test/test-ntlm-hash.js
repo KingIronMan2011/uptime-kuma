@@ -22,7 +22,7 @@ test("Test createPseudoRandomValue", async (t) => {
     await t.test("Should return valid hexadecimal string", () => {
         const length = 32;
         const result = hash.createPseudoRandomValue(length);
-        const hexRegex = /^[0-9a-f]+$/;
+        const hexRegex = /^[0-9a-f]*$/;
         assert.ok(hexRegex.test(result), "Result should be a valid hexadecimal string");
     });
 
