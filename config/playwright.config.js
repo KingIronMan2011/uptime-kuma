@@ -55,12 +55,4 @@ export default defineConfig({
             use: { browserName: "firefox" }
         },*/
     ],
-
-    // Run your local dev server before starting the tests.
-    webServer: {
-        command: `node extra/remove-playwright-test-data.js && cross-env NODE_ENV=development node server/server.js --port=${port} --data-dir=./data/playwright-test`,
-        url,
-        reuseExistingServer: false,
-        cwd: "../",
-    },
 });
